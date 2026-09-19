@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c3kexhs3fmn31"]
+
+[ext_resource type="Script" uid="uid://cce00jkt7ayku" path="res://scenes/bullet.gd" id="1_mkf8s"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mkf8s"]
+radius = 3.0
+height = 24.0
+
+[node name="Bullet" type="Area2D" unique_id=884245004 groups=["bullets"]]
+collision_layer = 2
+collision_mask = 8
+script = ExtResource("1_mkf8s")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1934867813]
+offset_left = 3.0
+offset_top = -12.0
+offset_right = 9.0
+offset_bottom = 12.0
+color = Color(0, 0.67868114, 0.4657675, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1847002217]
+shape = SubResource("CapsuleShape2D_mkf8s")
+debug_color = Color(0.8440776, 0.029655786, 0.20739079, 0.41960785)

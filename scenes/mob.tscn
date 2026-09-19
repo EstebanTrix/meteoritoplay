@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bcdf4kh0fu2d2"]
+
+[ext_resource type="Script" uid="uid://cejirednbvn8v" path="res://mob.gd" id="1_1qmh0"]
+[ext_resource type="Texture2D" uid="uid://bgi1qirxxeu3q" path="res://art/meteorito.png" id="2_bsing"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8w0r3"]
+animations = []
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8w0r3"]
+radius = 45.0
+height = 94.0
+
+[node name="Mob" type="Area2D" unique_id=2053101741 groups=["mobs"]]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_1qmh0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=107998517]
+sprite_frames = SubResource("SpriteFrames_8w0r3")
+animation = &""
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=117379268]
+position = Vector2(-3, -7)
+shape = SubResource("CapsuleShape2D_8w0r3")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=5283015]
+rect = Rect2(-60, -60, 120, 120)
+
+[node name="Meteorito" type="Sprite2D" parent="." unique_id=455801987]
+position = Vector2(-3, -8)
+scale = Vector2(0.28472224, 0.26805553)
+texture = ExtResource("2_bsing")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

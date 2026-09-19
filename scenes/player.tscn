@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://dimlnkst4n5sg"]
+
+[ext_resource type="Script" uid="uid://dwgxrvidc88hs" path="res://scripts/player.gd" id="1_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://wnceiu738fv2" path="res://assets/nave espacial.png" id="2_g2els"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8w0r3"]
+radius = 19.0
+height = 68.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8w0r3"]
+particle_flag_disable_z = true
+angle_min = 1.0728835e-05
+angle_max = 180.00002
+initial_velocity_min = 50.0
+initial_velocity_max = 150.0
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+color = Color(1, 0, 0, 1)
+
+[node name="Player" type="Area2D" unique_id=1446749818]
+collision_mask = 8
+script = ExtResource("1_i3pqv")
+
+[node name="NaveEspacial" type="Sprite2D" parent="." unique_id=962828768]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_g2els")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1231744267]
+shape = SubResource("CapsuleShape2D_8w0r3")
+
+[node name="HitParticles" type="GPUParticles2D" parent="." unique_id=1519965712]
+emitting = false
+amount = 20
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_8w0r3")
+
+[node name="LaserTimer" type="Timer" parent="." unique_id=846518835]
+wait_time = 8.0
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
